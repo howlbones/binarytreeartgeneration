@@ -1,5 +1,7 @@
 const canvas = document.getElementById('canvas');
 const generateButton = document.getElementById('generate');
+const trunkRadius = document.querySelector('.trunk-radius');
+const trunkRadiusSlider = document.querySelector('.trunk-radius-slider');
 const ctx = canvas.getContext('2d');
 ctx.canvas.width = 700;
 ctx.canvas.height = 700;
@@ -12,6 +14,13 @@ let length = 200;
 let branchDepthStart = 0;
 let maxBranchDepth = 15;
 let leafSize = 3;
+
+trunkRadius.textContent = radius;
+trunkRadiusSlider.value = radius;
+trunkRadiusSlider.addEventListener('input', (e) => {
+  trunkRadius.textContent = e.target.value;
+  radius = e.target.value;
+})
 
 // Function to clear the canvas
 function clearCanvas() {
