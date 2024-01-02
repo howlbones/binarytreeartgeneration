@@ -6,6 +6,11 @@ const treeLength = document.querySelector('.tree-length');
 const treeLengthSlider = document.querySelector('.tree-length-slider');
 const leafSizeDisplay = document.querySelector('.leaf-size');
 const leafSizeSlider = document.querySelector('.leaf-size-slider');
+const leafColor1Picker = document.querySelector('.leaf-color1-picker');
+const leafColor2Picker = document.querySelector('.leaf-color2-picker');
+const trunkColorPicker = document.querySelector('.trunk-color-picker');
+const trunkOutlinePicker = document.querySelector('.trunk-outline-picker');
+const backgroundColorPicker = document.querySelector('.background-color-picker');
 const ctx = canvas.getContext('2d');
 ctx.canvas.width = 700;
 ctx.canvas.height = 700;
@@ -18,6 +23,11 @@ let length = 200;
 let branchDepthStart = 0;
 let maxBranchDepth = 15;
 let leafSize = 3;
+let leafColor1 = '#008000';
+let leafColor2 = '#90EE90';
+let trunkColor = '#ffffff';
+let trunkOutlineColor = '#000000';
+let backgroundColor = '#000000';
 
 trunkRadius.textContent = radius;
 trunkRadiusSlider.value = radius;
@@ -36,8 +46,32 @@ treeLengthSlider.addEventListener('input', (e) => {
 leafSizeDisplay.textContent = leafSize;
 leafSizeSlider.value = leafSize;
 leafSizeSlider.addEventListener('input', (e) => {
-  leafSizeDisplay.textContent = e.target.value;
   leafSize = e.target.value;
+})
+
+leafColor1Picker.value = leafColor1;
+leafColor1Picker.addEventListener('input', (e) => {
+  leafColor1 = e.target.value;
+})
+
+leafColor2Picker.value = leafColor2;
+leafColor2Picker.addEventListener('input', (e) => {
+  leafColor2 = e.target.value;
+})
+
+trunkColorPicker.value = trunkColor;
+trunkColorPicker.addEventListener('input', (e) => {
+  trunkColor = e.target.value;
+})
+
+trunkOutlinePicker.value = trunkOutlineColor;
+trunkOutlinePicker.addEventListener('input', (e) => {
+  trunkOutlineColor = e.target.value;
+})
+
+backgroundColorPicker.value = backgroundColor;
+backgroundColorPicker.addEventListener('input', (e) => {
+  canvas.style.backgroundColor = e.target.value;
 })
 
 // Function to clear the canvas
@@ -75,12 +109,12 @@ function animateGrowBranch(startX, startY, length, lean, branchDepth, radius ) {
     // 1 in 3 chance that the branch will not grow up on this iteration 
     let newY = (random(3) > 0) ? startY : --startY;
 
-    drawCircle(ctx, newX, newY, radius, 'white', 'black', false);
+    drawCircle(ctx, newX, newY, radius, trunkColor, trunkOutlineColor, false);
     
     // Adds Leaves 
     // 1 in 20 chance to grow a leaf
     if (!random(20)) {
-      let color = (random(2)) ? 'lightgreen' : 'green';
+      let color = (random(2)) ? leafColor2 : leafColor1;
       drawCircle(ctx, startX, startY, leafSize, color, 'black', false);
     }
   }
