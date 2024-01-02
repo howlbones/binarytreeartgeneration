@@ -2,8 +2,10 @@ const canvas = document.getElementById('canvas');
 const generateButton = document.getElementById('generate');
 const trunkRadius = document.querySelector('.trunk-radius');
 const trunkRadiusSlider = document.querySelector('.trunk-radius-slider');
-const branchLength = document.querySelector('.branch-length');
-const branchLengthSlider = document.querySelector('.branch-length-slider');
+const treeLength = document.querySelector('.tree-length');
+const treeLengthSlider = document.querySelector('.tree-length-slider');
+const leafSizeDisplay = document.querySelector('.leaf-size');
+const leafSizeSlider = document.querySelector('.leaf-size-slider');
 const ctx = canvas.getContext('2d');
 ctx.canvas.width = 700;
 ctx.canvas.height = 700;
@@ -24,11 +26,18 @@ trunkRadiusSlider.addEventListener('input', (e) => {
   radius = e.target.value;
 })
 
-branchLength.textContent = length;
-branchLengthSlider.value = length;
-branchLengthSlider.addEventListener('input', (e) => {
-  branchLength.textContent = e.target.value;
+treeLength.textContent = length;
+treeLengthSlider.value = length;
+treeLengthSlider.addEventListener('input', (e) => {
+  treeLength.textContent = e.target.value;
   length = e.target.value;
+})
+
+leafSizeDisplay.textContent = leafSize;
+leafSizeSlider.value = leafSize;
+leafSizeSlider.addEventListener('input', (e) => {
+  leafSizeDisplay.textContent = e.target.value;
+  leafSize = e.target.value;
 })
 
 // Function to clear the canvas
